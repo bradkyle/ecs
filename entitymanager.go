@@ -5,12 +5,18 @@ import "errors"
 // EntityManager is a list of all entities in the game
 type EntityManager struct {
 	entities []*Entity
+	components map[string][]*Entity
 }
 
 var _em = new(EntityManager)
+_em.components = make(map[string][]*Entity)
 
 func (manager EntityManager) addEntity(entity *Entity) {
 	manager.entities = append(manager.entities, entity)
+}
+
+func (manager EntityManager) addComponent(componentName string, entity *Entity) {
+	manager.components[componentName] = append(manager.components[componentName], entity)
 }
 
 func (manager EntityManager) findEntityByID(entityID uint32) int {

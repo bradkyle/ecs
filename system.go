@@ -18,6 +18,6 @@ func AddSystem(componentName string, update func([]*Entity)) {
 // SystemLoop will loop over each system
 func SystemLoop() {
 	for i := 0; i < len(_systems); i++ {
-		go _systems[i].update(_em.findEntitiesByComponent(_systems[i].componentName))
+		go _systems[i].update(_em.components[_system[i].componentName])
 	}
 }

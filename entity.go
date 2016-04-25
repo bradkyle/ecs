@@ -32,6 +32,7 @@ func (e *Entity) AddComponent(component *interface{}) error {
 	componentName := reflect.TypeOf(component).Name()
 	if _, found := e.Components[componentName]; !found {
 		e.Components[componentName] = component
+		_em.addComponent(componentName, e)
 	} else {
 		return errors.New("Component already added.")
 	}
